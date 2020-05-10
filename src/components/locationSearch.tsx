@@ -13,6 +13,7 @@ class LocationSearch extends Component {
 
   handleChange(event) {
     // I think this method can be removed
+    // Or maybe keep it here to validate the input value
     this.setState({ value: event.target.value });
   }
 

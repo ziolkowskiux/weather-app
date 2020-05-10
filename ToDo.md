@@ -1,8 +1,8 @@
--[ ] https://www.metaweather.com/api/ - keyless weather API
+-[x] https://www.metaweather.com/api/ - keyless weather API
 -[ ] https://daveceddia.com/react-practice-projects/
 -[ ] Add the ability to click on a day, and see its hourly forecast. You can just maintain the current view in the top-level App state.
 -[ ] Add React Router to the project (npm install react-router) and follow the quick start guide here to add routes, such that / shows the 5-day forecast, and /[name-of-day] shows the hourly forecast for a particular day.
 -[ ] Want to get really fancy? Add a graphics library like vx and follow the examples here to add a graph of the temperature over the course of a week or day.
--[ ] Add ability to search for the location
+-[x] Add ability to search for the location
 -[ ] Stack Overflow question: why fetch did not require "async" declaration when in the same file as the component while when it was extracted to separate file it started to require "async"
 -[ ] Remember to define type of each variable - this is how TypeScript work and this is how you can benefit from it.

@@ -1,5 +1,5 @@
 let proxyUrl = "https://cors-anywhere.herokuapp.com/";
-let targetUrl = "https://www.metaweather.com/api/location/search/?query=";
+let targetUrl = "https://www.metaweather.com/api/location/";
 
 
 // Remember, async function returns promise that you have to further parse.
@@ -26,8 +26,18 @@ export async function sendRequest(location) {
   return result;
 }
 
-export async function getLocationAsync(location) {
-  let response = await fetch(proxyUrl + targetUrl + location);
+export async function getLocationAsync(value: string, type: string) {
+  let target: string;
+  
+  if (type === "location") {
+    target = proxyUrl + targetUrl + "search/?query=" + value;
+  } else if (type === "locationDetails") {
+    target = proxyUrl + targetUrl + value;
+  } else {
+    return;
+  }
+
+  let response = await fetch(target);
   let data = await response.json();
   return data;
 }

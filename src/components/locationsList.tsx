@@ -1,24 +1,29 @@
 import React, { Component } from "react";
-import { sendRequest, getLocationAsync } from "../utils";
+import { getLocationAsync } from "../utils";
 
 
 // in TypeScript you have to define type of each variable in interface
 interface Props  {
   location: string,
+  onClick: any,
 }
 
 class LocationsList extends Component<Props> {
-  state = {
-    error: null,
-    isLoaded: false,
-    items: [],
-    selectedItem: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: [],
+      selectedItem: []
+    }
 
+    this.selectLocation = this.selectLocation.bind(this);
+  }
+  
   selectLocation(event) {
     event.preventDefault();
     this.props.onClick(event.target.value);
-    console.log("showWeatherInfo in action!");
   }
 
   //Ok then, so why my header setup didn't work
@@ -26,7 +31,7 @@ class LocationsList extends Component<Props> {
 
   componentDidUpdate(prevProps: any) {
     if (this.props.location !== prevProps.location) {
-      getLocationAsync(this.props.location).then(data => {
+      getLocationAsync(this.props.location, "location").then(data => {
         this.setState({
           isLoaded: true,
           items: data
