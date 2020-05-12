@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {getLocationAsync} from "../utils";
 
 interface Props {
-  locationDetails: string;
+  locationDetails: string,
 }
 
 class weatherInfo extends Component<Props> {
@@ -12,18 +12,29 @@ class weatherInfo extends Component<Props> {
 
   componentDidUpdate(prevProps: any) {
     const locationDetails = this.props.locationDetails;
+    let locationData = [];
     if (locationDetails !== prevProps.locationDetails) {
       getLocationAsync(locationDetails, "locationDetails")
         .then(data => {
+          locationData = data.consolidated_weather.map((item: object) => item);
           this.setState({
-            details: data.consolidated_weather
+            details: locationData,
           })
         })
     }
   }
 
   render() {
-    return <div>{this.state.details}</div>;
+    const {details} = this.state;
+    return (
+      <ul>
+      {details.map((item, index) => (
+        <li key={item.id}>
+          {item.weather_state_name}
+        </li>
+      ))}
+    </ul>
+    );
   }
 }
 
