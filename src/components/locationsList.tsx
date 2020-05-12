@@ -6,6 +6,7 @@ import { getLocationAsync } from "../utils";
 interface Props  {
   location: string,
   onClick: any,
+  loading: boolean,
 }
 
 class LocationsList extends Component<Props> {
@@ -13,6 +14,7 @@ class LocationsList extends Component<Props> {
     super(props);
     this.state = {
       error: null,
+      loading: this.props.loading,
       isLoaded: false,
       items: [],
       selectedItem: []
@@ -31,32 +33,41 @@ class LocationsList extends Component<Props> {
 
   componentDidUpdate(prevProps: any) {
     if (this.props.location !== prevProps.location) {
+      this.setState({
+        loading: this.props.loading
+      })
       getLocationAsync(this.props.location, "location").then(data => {
         this.setState({
           isLoaded: true,
-          items: data
+          items: data,
         });
-      }); // should I add here error resolution ? I think I should.
+      }); // should I add here error handling ? I think I should.
     }
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, loading, isLoaded, items } = this.state;
+    let loaded;
+    
     if (error) {
-      return <div>Error: {error.message}</div>;
+      loaded = <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      loaded = <div>Loading...</div>;
     } else {
-      return (
-        <ul>
+      loaded = (<ul>
           {items.map((item, index) => (
             <li key={item.id} value={item.woeid} onClick={this.selectLocation}>
               {item.title}
             </li>
           ))}
-        </ul>
-      );
+        </ul>)
+      ;
     }
+
+    return (loading ? 
+      loaded :
+      <div>Please find location you are interested in.</div>
+    )
   }
 }
 

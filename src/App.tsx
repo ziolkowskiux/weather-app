@@ -7,8 +7,10 @@ import WeatherInfo from "./components/weatherInfo";
 export default function App() {
   const [location, setLocation] = useState("");
   const [locationDetails, setLocationDetails] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (value: string) => {
+    setLoading(true)
     setLocation(value);
   };
 
@@ -21,7 +23,7 @@ export default function App() {
       <h2>Hello Weather</h2>
       <h4>Please type in desired location to receive weather forecast</h4>
       <LocationSearch onSubmit={handleSubmit} />
-      <LocationsList location={location} onClick={getLocationDetails} />
+      <LocationsList loading={loading} location={location} onClick={getLocationDetails} />
       <WeatherInfo locationDetails={locationDetails}/>
     </div>
   );

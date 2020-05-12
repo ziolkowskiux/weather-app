@@ -1,4 +1,5 @@
 -[ ] Add search input validation
+-[ ] Get rid of this "Loading..."  text before any search takes place, because it's misleading. Check if this did not lead to some bug.
 -[ ] Add React Router to the project (npm install react-router) and follow the quick start guide here to add routes, such that / shows the 5-day forecast, and /[name-of-day] shows the hourly forecast for a particular day.
 -[ ] Want to get really fancy? Add a graphics library like vx and follow the examples here to add a graph of the temperature over the course of a week or day.
 -[ ] https://daveceddia.com/react-practice-projects/
