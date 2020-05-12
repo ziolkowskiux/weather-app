@@ -40,7 +40,7 @@ class weatherDayCard extends Component<Props, State> {
             <div>Visibility: {this.props.weather.visibility}</div>
           </div> : null
         }
-        
+        <hr/>
       </div>
     )
   }
