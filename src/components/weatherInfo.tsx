@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {getLocationAsync} from "../utils";
+import WeatherDayCard from "./weatherDayCard";
 
 interface Props {
   locationDetails: string,
@@ -27,13 +28,11 @@ class weatherInfo extends Component<Props> {
   render() {
     const {details} = this.state;
     return (
-      <ul>
-      {details.map((item, index) => (
-        <li key={item.id}>
-          {item.weather_state_name}
-        </li>
-      ))}
-    </ul>
+      <div>
+        {details.map((item, index) => (
+            <WeatherDayCard key={item.id} weather={item}/>
+        ))}
+      </div>
     );
   }
 }
